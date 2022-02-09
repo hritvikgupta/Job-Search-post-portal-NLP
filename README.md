@@ -8,3 +8,9 @@ The datasets that are imported is used to extract the major keywords that are us
  
  * https://www.kaggle.com/gauravduttakiit/resume-dataset
  * https://www.kaggle.com/hritvikgupta/jobsextractor
+
+# Sites that is used for the references are:- 
+* https://www.analyticsvidhya.com/blog/2020/06/nlp-project-information-extraction/
+* https://deepnote.com/@abid/spaCy-Resume-Analysis-gboeS3-oRf6segt789p4Jg
+* https://www.machinelearningplus.com/nlp/training-custom-ner-model-in-spacy/
+* https://www.analyticsvidhya.com/blog/2019/08/how-to-remove-stopwords-text-normalization-nltk-spacy-gensim-python/
