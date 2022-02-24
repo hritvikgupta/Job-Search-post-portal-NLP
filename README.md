@@ -1,4 +1,4 @@
-# Jobs- Resume - extractor
+# Jobs- description - extractor
 
 Resume Extractor Application is a Smart India Hackathon Project which uses the Natural Language Procssing to extract the job description from any documents of job posting such as newspaper clipping, pdfs , advertisement, or any other job posting document. The Library that played a major role in this project is Spacy library
 that extracts the major keywords using the pre-trained neural networks.
