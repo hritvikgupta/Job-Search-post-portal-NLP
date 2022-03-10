@@ -1,0 +1,317 @@
+ADP Workforce Now
+Auditing
+Budget Forecasting
+Cash Flow Analysis
+Cost Accounting
+Credit/Debt Management
+Estate Planning
+Financial Accounting
+Financial Compliance
+Financial Reporting
+Forensic Accounting
+Income Tax Planning
+Intuit QuickBooks
+Management Accounting
+Microsoft Excel
+Netsuite
+Payroll Management
+PeopleSoft
+Reconciliation
+Revenue Forecasting
+Salesforce
+Tax Preparation
+Administrative Assistant Skills
+
+Administrative Support
+Booking Travel
+Calendaring
+Customer Service
+Meeting Coordination
+Meeting Minutes Recording
+Microsoft Office Suite
+Office Support
+Proofreading
+Scheduling
+Social Media Management
+Back-End Developer Skills
+
+Application Scaling
+Back-End Framework
+Back-End Programming Languages
+Database Administration
+Front-End Web Technologies
+Hosting Environment
+Java
+Load Changes
+PHP
+Python
+Ruby
+Security Compliance
+Version Control (e.g. Git)
+Customer Service Skills
+
+Account Management
+Chat Support
+CRM
+Customer Service
+Language Skills (Spoken and/or Written)
+Phone Support
+Resolutions
+Salesforce
+Ticketing
+Training
+Executive Assistant Skills
+
+Booking Travel
+Budgeting
+Calendaring
+Corporate Communications
+Editing & Proofreading
+Meeting Coordination
+Microsoft Office Suite
+Preparing Agendas
+Report Generation
+Reviewing Contracts
+Scheduling
+Financial Analyst Skills
+
+IBM Cognos Impromptu
+Microsoft Dynamics
+Microsoft Excel
+Montgomery Investment Technology FinTools
+Montgomery Investment Technology Utility XL
+NetSuite
+Oracle Business Intelligence
+S&P Capital IQ
+Salesforce
+SAS Financial Management
+Tableau
+The MathWorks MATLAB
+Front-End Developer Skills
+
+Back-End Data Display
+Coding
+Create Web Pages
+CSS
+Dynamic Web Page Design
+Framework Templates
+HTML
+JavaScript
+Search Engine Optimization
+Software Workflow
+Styling and Color Design
+Website Content Display
+Website Navigation Optimization
+Full-Stack Engineer Skills
+
+CircleCI
+CSS
+Docker
+Git
+Go
+HTML
+JavaScript
+Node
+Postgres
+Python
+Rails
+React
+Redux
+Ruby
+SASS
+SQL
+Tornado
+TypeScript
+Graphic Designer Skills
+
+Adobe
+After Effects
+Concepts
+CSS
+Dreamweaver
+Illustrator
+InDesign
+InVision
+Photoshop
+Product Design
+Sketch
+Typography
+Marketer Skills
+
+Audience Building
+Blog Writing
+Brand Management
+Content Creation
+Content Marketing
+Conversion Rate Optimization
+Customer Acquisition
+Copywriting
+Data Analysis
+Demand Generation
+Digital Marketing
+Email Marketing
+Facebook Management
+Google Ads
+Google Analytics
+Instagram Management
+Lead Generation
+LinkedIn Management
+Marketing Automation and Technology
+Market Research
+Marketo Marketing Automation
+Power Editor
+Project Management
+Search Engine Marketing (SEM)
+Search Engine Optimization (SEO)
+Social Media
+Twitter Management
+Office Manager Skills
+
+Administrative Support
+Billing Software
+Booking Travel
+Calendaring
+Customer Service
+Document Management
+Executive Support
+Expense Reporting
+Facilities Management
+Intuit QuickBooks
+Inventory Management
+Invoicing
+Meeting Coordination
+Microsoft Excel
+Office Supply Management
+Payroll Processing
+Project Management
+Proofreading
+Reports Generation
+Vendor Management
+Product Designer Skills
+
+Adobe Creative Cloud (Photoshop, Illustrator, InDesign)
+ADA Compliance Training
+Asana
+Axure
+Balsamiq
+Confluence
+Crashlytics
+Dreamweaver
+Google Design Sprint Method
+HTML/CSS
+InVision
+Jira
+Justinmind
+Omnigraffle
+Sketch
+Story Mapping
+Style Guides/Pattern Libraries for React
+Testflight
+Trello
+Ubertesting
+Xcode
+Zeplin
+Product Manager Skills
+
+A/B Testing
+Administrator for JD Edwards
+Asana
+Beta Testing
+Budgeting
+Confluence
+CSS
+Customer Analysis
+Data Analytics
+Financial Analysis
+Forecasting
+HTML
+JavaScript
+Jira
+Kanban
+Marketing
+Project Management
+Quality Assurance
+Release Management
+Risk Management
+Roadmapping
+Salesforce
+Scrum Management
+SWOT Analysis
+Trello
+Troubleshooting
+User Research
+UX/UI Design
+Waterfall
+ZenDesk
+Project Manager Skills
+
+Agile
+Asana
+Budgeting
+Change Management
+Client Communication
+Data Analysis
+Data Modeling
+Deployment Management
+Development & Testing
+Financial Analysis
+Impact Assessment
+Jira
+Kanban
+Process Development
+Process Improvement
+Project Life Cycle
+Project Management Software
+Quality Control
+Resource Allocation
+Risk Management
+Scheduling & Planning
+Scope Management
+Scrum Management
+Stakeholder Management
+Salesperson Skills
+
+Account Management
+Business Analysis
+Business Development
+Cold Calling
+Consultative Selling
+Customer Relations
+Executive Relationships
+Forecasting
+Lead Generation
+Prospecting
+Relationship Management
+Salesforce
+Teacher Skills
+
+Blackboard
+Blended Learning
+Canvas
+Character Education
+Classroom Management
+Collaborative Environments
+Data Analysis
+Data-Driven Instruction
+Inclusive Classroom
+Interactive Classroom
+MAP Testing
+Mystery Math
+Personalized Learning
+Reading 3D
+Social-Emotional Learning
+Student-Guided Learning
+Web Developer Skills
+
+Agile Software Development
+Application Coding
+C++
+Command Line Tools
+Debugging
+Java
+LAMP Development
+Object-Oriented Design
+Python
+Responsive Design
+Server-Side Scripting
+Writing Modules
