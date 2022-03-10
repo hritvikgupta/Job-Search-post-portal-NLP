@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>upload</title>
+    <link rel="stylesheet" href="styling/file.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="h-primary">Document Classification</h1>
+      </div>
+    </nav>
+
+    <!-- button main -->
+    <section class="fileUpload">
+      <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="container">
+          <input class="upload-box" type="file" name="file" />
+        </div>
+
+        <div class="upload-button">
+          <input class="upload" type="submit" value="Upload" />
+        </div>
+      </form>
+    </section>
+    <pre>{{prediction_text}}</pre>
+  </body>
+</html>
