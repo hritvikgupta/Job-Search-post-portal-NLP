@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 import string
 from spacy.pipeline import EntityRuler 
 #from wordcloud import WordCloud
-import seaborn as sns
+#import seaborn as sns
 import textract
 import matplotlib.pyplot as plt
 nltk.download('stopwords')
@@ -53,7 +53,10 @@ from spacy.tokens import Doc
 import numpy as np
 from tika import parser
 
-
+import random
+from spacy.util import minibatch, compounding
+from pathlib import Path
+from spacy.training.example import Example
 ## Flask Application
 
 from flask import Flask,request, url_for, redirect, render_template, jsonify
@@ -226,7 +229,7 @@ class resume_spacy_pdf_clean_skills():
         ##Loading model from NLP
 
         LABEL = "JOB"
-        nlp, ruler = spacy_.nlp_model_initalization()
+        #nlp, ruler = spacy_.nlp_model_initalization()
         pipes1 = nlp.pipe_names
         ner=nlp.get_pipe("ner")
         optimizer = nlp.resume_training()
@@ -318,6 +321,60 @@ class resume_spacy_pdf_clean_skills():
         print(f"The current Resume is {match}% matched to your requirements")
         return match 
 
+    def train_nlp_model_entity(self,model):
+        data = [
+              ("Name of the Posts: Programmer ", {"entities": [(19, 29, "JOB")]}),
+              ("Requirement for analyst part time in google", {"entities": [(16, 23, "JOB")]}),
+              ("Job posting for a writter", {"entities": [(18, 25, "JOB")]}),
+              ("vacancy for a manager in tata industries", {"entities": [(14,21, "JOB")]}),
+              ("posting for a intern in IIT bhu", {"entities": [(14,20, "JOB")]}),
+              ("vacancy for a research intern", {"entities": [(14,22, "JOB")]}),
+              ("required a technician for chemistry lab", {"entities": [(11,21, "JOB")]}),
+              ("temprary requirement for research fellow urgently", {"entities": [(34,40, "JOB")]}),
+              ("position for senior journslist in ABP News", {"entities": [(20,30, "JOB")]}),
+              ("employment for a engineer needed urgently", {"entities": [(17,25, "JOB")]}),
+              ("medical traineer at aiims delhi part time reqiured", {"entities": [(8,16, "JOB")]}),
+              ("post for a screwdriver endevour is empty from our neighbour", {"entities": [(11,22, "JOB")]}),
+              ("posting for a computer engineer job in microsoft", {"entities": [(23,31, "JOB")]}),
+              ("profession required is a manager in JSW", {"entities": [(25,32, "JOB")]}),
+              ("opening for a web developer in india", {"entities": [(18,27, "JOB")]})
+              ]
+        nlp = model
+        ner = nlp.get_pipe("ner")
+        for _, annotations in data:
+            for ent in annotations.get("entities"):
+                ner.add_label(ent[2])
+
+        pipe_exceptions = ['ner', "trf_wordpiecer", "trf_tok2vec"]
+        unaffected_pipes = [pipe for pipe in nlp.pipe_names if pipe not in pipe_exceptions]
+        from spacy.training.example import Example
+        import random
+        from spacy.util import minibatch, compounding
+        from pathlib import Path
+
+        # TRAINING THE MODEL
+        with nlp.disable_pipes(*unaffected_pipes):
+            for iteration in range(30):
+
+                # shuufling examples  before every iteration
+                random.shuffle(data)
+                losses = {}
+                # batch up the examples using spaCy's minibatch
+                batches = minibatch(data, size=compounding(4.0, 32.0, 1.001))
+                for batch in batches:
+                    for texts, annotations in batch:
+                        doc = nlp.make_doc(texts)
+                        example = Example.from_dict(doc , annotations)
+                        nlp.update( [example], # batch of annotations
+                                    drop=0.5,  # dropout - make it harder to memorise data
+                                    losses=losses,
+
+                                )
+                        print("Losses", losses)
+        return nlp
+
+
+
 @app.route('/predict',methods=['POST'])
 def predict():
     if request.method == 'POST':  
@@ -331,9 +388,9 @@ def predict():
     path = os.path.join(os.path.join(app.config['UPLOAD_FOLDER'], pa))
     #path  ="/Users/hritvikgupta/Downloads/flask-app/data/Careers-Sample-job-Ad.pdf"
     spacy_ =  resume_spacy_pdf_clean_skills(path, "specific_cleaning" )
-    text_from_pdf = str(textract.process(path))
+    #text_from_pdf = str(textract.process(path))
     #print(text_from_pdf)
-    #text_from_pdf = spacy_.pdf_to_text()
+    text_from_pdf = spacy_.pdf_to_text()
     #clean_text = spacy_.cleaning_texts(text_from_pdf)
     p6 = ["agile", "deadline-oriented", "multitask", "pressure","multitasking", "enthusiastic", "high energy", "committed", "proactive", "pressure", "independently", "entrepreneurial", "independent", "resourceful"]
     p5 = "essential salary necessary desirable applicant strong background qualification overtime experience worked knowlegde interview applicants immediate opening required flexible worked working skill skills role roles key full-time part-time well-paid badly paid high-powered stressful challenging rewarding repetitive glamorous plan years experience worked willing knowledge interview applicants interview immediate interested opening responsiblity resposiblities Administrative assistant Customer service Receptionist Part time UPS package handler part time entry level"
@@ -345,8 +402,14 @@ def predict():
     skills_required = spacy_.get_description_skill(nlp, text_from_pdf)
     number_of_post = spacy_.get_number_of_post(text_from_pdf)
     #jobs = trained_spacy_model_jobs(nlp, data)
-    prediction = [des, skills_required , number_of_post, sal]
-    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(prediction))
+    output_dir = Path('/Users/hritvikgupta/Downloads/flask-app/data/nlp_spacy_model')
+    #nlp.to_disk(output_dir)
+    #nlp_updated = spacy.load(output_dir)
+    #doc1 = nlp_updated(text_from_pdf)
+    #jobs = [i.text for i in doc1.ents]
+    jobs = spacy_.train_nlp_model_entity(nlp)
+    prediction = [jobs,des, skills_required , number_of_post, sal]
+    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(jobs))
     
 
 
