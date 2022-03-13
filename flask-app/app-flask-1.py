@@ -404,12 +404,12 @@ def predict():
     #jobs = trained_spacy_model_jobs(nlp, data)
     output_dir = Path('/Users/hritvikgupta/Downloads/flask-app/data/nlp_spacy_model')
     #nlp.to_disk(output_dir)
-    #nlp_updated = spacy.load(output_dir)
-    #doc1 = nlp_updated(text_from_pdf)
-    #jobs = [i.text for i in doc1.ents]
-    jobs = spacy_.train_nlp_model_entity(nlp)
-    prediction = [jobs,des, skills_required , number_of_post, sal]
-    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(jobs))
+    nlp_updated = spacy.load(output_dir)
+    doc1 = nlp_updated(text_from_pdf)
+    jobs = [i.text for i in doc1.ents]
+    #jobs = spacy_.train_nlp_model_entity(nlp)
+    prediction = [jobs,  des, skills_required , number_of_post, sal]
+    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(prediction))
     
 
 
