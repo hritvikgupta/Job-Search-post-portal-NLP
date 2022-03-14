@@ -1,6 +1,7 @@
 #pip install tika
 #pip install pycaret
 import os
+from graphviz import render
 import tensorflow
 import pandas as pd
 import keras
@@ -373,8 +374,9 @@ class resume_spacy_pdf_clean_skills():
                         print("Losses", losses)
         return nlp
 
-
-
+@app.route("/job", methods = ['POST'])
+def jobs_(jobs):
+    return render_template("index.html", jobs)
 @app.route('/predict',methods=['POST'])
 def predict():
     if request.method == 'POST':  
@@ -408,8 +410,11 @@ def predict():
     doc1 = nlp_updated(text_from_pdf)
     jobs = [i.text for i in doc1.ents]
     #jobs = spacy_.train_nlp_model_entity(nlp)
-    prediction = [jobs,  des, skills_required , number_of_post, sal]
-
+    #prediction = [jobs,  des, skills_required , number_of_post, sal]
+    prediction = {}
+    prediction["Jobs"] = jobs
+    prediction['description'] = des
+    jobs_(jobs)
 
 
     ## For Matching resume
@@ -420,7 +425,7 @@ def predict():
     clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
     match = spacy_.get_matching_score(set(jobs), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(match))
+    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(prediction))
     
 
 
