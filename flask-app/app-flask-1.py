@@ -178,23 +178,23 @@ class resume_spacy_pdf_clean_skills():
 
     def get_create_patterns(self, text):
         
-        pattern2 = [r'\b(?i)'+'plan'+r'\b', r'\b(?i)'+'years'+r'\b',
-        r'\b(?i)'+'experience'+r'\b',
-        r'\b(?i)'+'worked'+r'\b',
-        r'\b(?i)'+'willing'+r'\b',
-        r'\b(?i)'+'knowledge'+r'\b',
-        r'\b(?i)'+'interview'+r'\b', 
-        r'\b(?i)'+'applicants'+r'\b',
-        r'\b(?i)'+'interview'+r'\b',
-        r'\b(?i)'+'immediate'+r'\b',
-        r'\b(?i)'+'interested'+r'\b',
-        r'\b(?i)'+'opening'+r'\b',]
+        pattern2 = [r'\b(?i:plan)'+r'\b', r'\b(?i:years)'+r'\b',
+        r'\b(?i:experience)'+r'\b',
+        r'\b(?i:worked)'+r'\b',
+        r'\b(?i:willing)'+r'\b',
+        r'\b(?i:knowledge)'+r'\b',
+        r'\b(?i:interview)'+r'\b', 
+        r'\b(?i:applicants)'+r'\b',
+        r'\b(?i:interview)'+r'\b',
+        r'\b(?i:immediate)'+r'\b',
+        r'\b(?i:interested)'+r'\b',
+        r'\b(?i:opening)'+r'\b']
 
         #for i in w:
          #           pattern2.append(r'\b(?i)'+ str(i) + r'\b')
         w2 = text.split(" ")
         for i in w2:
-            pattern2.append(r'\b(?i)'+str(i)+r'\b')
+            pattern2.append(r'\b(?i:'+str(i)+')'+r'\b')
     
         return pattern2
     
@@ -208,7 +208,7 @@ class resume_spacy_pdf_clean_skills():
         return set(skill)
     
     def get_salary(self, text_from_pdf):
-        pat2 = [r'\b(?i)'+'salary'+r'\b', r'\b(?i)'+'Rs'+r'\b', r'\b(?i)'+'rs'+r'\b']
+        pat2 = [r'\b(?i:salary)'+r'\b', r'\b(?i:Rs)'+r'\b', r'\b(?i:rs)'+r'\b']
 
         sal = []
         for p in pat2:
@@ -298,7 +298,7 @@ class resume_spacy_pdf_clean_skills():
     
     def get_number_of_post(self, text_from_pdf):
         post = []
-        pat2 = [r'\b(?i)'+'senior'+r'\b',r'\b(?i)'+'Trainee'+r'\b',r'\b(?i)'+'post'+r'\b',r'\b(?i)'+'reserch fellow'+r'\b',r'\b(?i)'+'junior'+r'\b',r'\b(?i)'+'nos'+r'\b', r'\b(?i)'+'position'+r'\b', r'\b(?i)'+'required'+r'\b', r'\b(?i)'+'posting'+r'\b', r'\b(?i)'+'vocation'+r'\b',  r'\b(?i)'+'vacancy'+r'\b',  r'\b(?i)'+'opening'+r'\b',  r'\b(?i)'+'place'+r'\b']
+        pat2 =  [r'\b(?i:senior)'+r'\b',r'\b(?i:Trainee)'+r'\b',r'\b(?i:post)'+r'\b',r'\b(?i:reserch fellow)'+r'\b',r'\b(?i:junior)'+r'\b',r'\b(?i:nos)'+r'\b', r'\b(?i:position)'+r'\b', r'\b(?i:required)'+r'\b', r'\b(?i:posting)'+r'\b', r'\b(?i:vocation)'+r'\b',  r'\b(?i:vacancy)'+r'\b',  r'\b(?i:opening)'+r'\b',  r'\b(?i:place)'+r'\b']
         sal = []
         for p in pat2:
             for i in text_from_pdf.lower().split("\n"):
@@ -409,7 +409,18 @@ def predict():
     jobs = [i.text for i in doc1.ents]
     #jobs = spacy_.train_nlp_model_entity(nlp)
     prediction = [jobs,  des, skills_required , number_of_post, sal]
-    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(prediction))
+
+
+
+    ## For Matching resume
+    path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
+    spacy_2 =  resume_spacy_pdf_clean_skills(path_resume, "specific_cleaning" )
+    nlp2, ruler = spacy_2.nlp_model_initalization()
+    text_from_pdf2 = spacy_2.pdf_to_text()
+    clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
+    get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
+    match = spacy_.get_matching_score(set(jobs), set(get_skills_from_resume2))
+    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(match))
     
 
 
