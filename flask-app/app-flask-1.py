@@ -374,9 +374,7 @@ class resume_spacy_pdf_clean_skills():
                         print("Losses", losses)
         return nlp
 
-@app.route("/job", methods = ['POST'])
-def jobs_(jobs):
-    return render_template("index.html", jobs)
+
 @app.route('/predict',methods=['POST'])
 def predict():
     if request.method == 'POST':  
@@ -414,7 +412,7 @@ def predict():
     prediction = {}
     prediction["Jobs"] = jobs
     prediction['description'] = des
-    jobs_(jobs)
+    #jobs_(jobs)
 
 
     ## For Matching resume
@@ -425,7 +423,10 @@ def predict():
     clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
     match = spacy_.get_matching_score(set(jobs), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text='Expected Bill will be {}'.format(prediction))
+    return render_template('index.html', prediction_text=set(skills_required), 
+                                        jobs_text = set(jobs),
+                                        salary_re = set(sal),
+                                        nop = number_of_post)
     
 
 

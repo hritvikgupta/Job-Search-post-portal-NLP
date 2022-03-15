@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>upload</title>
+    <link rel="stylesheet" href="styling/file.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="h-primary">Document Classification</h1>
+      </div>
+    </nav>
+
+    <!-- button main -->
+    <section class="fileUpload">
+      <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="container">
+          <input
+            class="upload-box"
+            type="file"
+            name="file"
+            onsubmit="send('pre')"
+          />
+        </div>
+        <!-- job -->
+        <div class="container">
+          <input
+            class="upload-box"
+            type="file"
+            name="file"
+            onsubmit="send('job')"
+          />
+        </div>
+
+        <div class="upload-button">
+          <input class="upload" type="submit" value="Upload" />
+        </div>
+      </form>
+    </section>
+    <pre>{{prediction_text}}</pre>
+  </body>
+  <script>
+    const pre = (type) => {
+      if (type === "pre") {
+        form.action = "/predict";
+        form.submit();
+      } else {
+        form.action = "/job";
+        form.submit();
+      }
+    };
+  </script>
+</html>
