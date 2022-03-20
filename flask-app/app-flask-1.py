@@ -423,7 +423,7 @@ def predict():
     clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
     match = spacy_.get_matching_score(set(jobs), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text=set(skills_required), 
+    return render_template('index.html', prediction_text="Skills Required {}".format(set(skills_required)), 
                                         jobs_text = set(jobs),
                                         salary_re = set(sal),
                                         nop = number_of_post)
