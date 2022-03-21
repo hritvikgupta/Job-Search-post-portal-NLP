@@ -374,6 +374,18 @@ class resume_spacy_pdf_clean_skills():
                         print("Losses", losses)
         return nlp
 
+@app.route('/resume',methods=['POST'])
+def resume():
+        ## For Matching resume
+    
+    path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
+    spacy_2 =  resume_spacy_pdf_clean_skills(path_resume, "specific_cleaning" )
+    nlp2, ruler = spacy_2.nlp_model_initalization()
+    text_from_pdf2 = spacy_2.pdf_to_text()
+    clean_text2 = spacy_2.cleaning_texts(text_from_pdf2)
+    get_skills_from_resume2, others= spacy_2.get_skills(nlp2,clean_text2)
+    match = spacy_2.get_matching_score(set(jobs), set(get_skills_from_resume2))
+    return render_template('index.html', prediction_text="Skills Required {}".format(match))
 
 @app.route('/predict',methods=['POST'])
 def predict():
