@@ -374,24 +374,28 @@ class resume_spacy_pdf_clean_skills():
                         print("Losses", losses)
         return nlp
 
-@app.route('/resume',methods=['POST'])
+@app.route('/resume',methods=['GET','POST'])
 def resume():
+    if request.method == 'POST':  
+        file_path = request.files['file']
         ## For Matching resume
-    
-    path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
+    pa  = file_path.filename 
+    path_resume = os.path.join(os.path.join(app.config['UPLOAD_FOLDER'], pa))
+    jobs = request.args.get("jobs")
+   # path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
     spacy_2 =  resume_spacy_pdf_clean_skills(path_resume, "specific_cleaning" )
     nlp2, ruler = spacy_2.nlp_model_initalization()
     text_from_pdf2 = spacy_2.pdf_to_text()
     clean_text2 = spacy_2.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_2.get_skills(nlp2,clean_text2)
     match = spacy_2.get_matching_score(set(jobs), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text="Skills Required {}".format(match))
+    return render_template('index.html', match="Matched resume {}".format(match))
 
 @app.route('/predict',methods=['POST'])
 def predict():
     if request.method == 'POST':  
         file_path = request.files['file']
-    
+        filepath2 = request.files['file2']
     #s = str(file_path).index("/Users")
     #e = str(file_path).index(".pdf")
     #path  = str(file_path)[s:e]
@@ -428,17 +432,21 @@ def predict():
 
 
     ## For Matching resume
-    path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
+    pa2  = filepath2.filename 
+    path_resume = os.path.join(os.path.join(app.config['UPLOAD_FOLDER'], pa2))
+    #path_resume  ="/Users/hritvikgupta/Downloads/flask-app/data/sid.pdf"
     spacy_2 =  resume_spacy_pdf_clean_skills(path_resume, "specific_cleaning" )
     nlp2, ruler = spacy_2.nlp_model_initalization()
     text_from_pdf2 = spacy_2.pdf_to_text()
     clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
     match = spacy_.get_matching_score(set(jobs), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text="Skills Required {}".format(set(skills_required)), 
-                                        jobs_text = set(jobs),
-                                        salary_re = set(sal),
-                                        nop = number_of_post)
+    return render_template('index.html', prediction_text="Skills Required  : {}".format(set(skills_required)), 
+                                        jobs_text = "Job Opening For : ()".format(set(jobs)),
+                                        salary_re = "Salary offered : {}".format(set(sal)),
+                                        nop = "Number of Openings : {}".format(number_of_post),
+                                        match="Matched resume : {}".format(match),
+                                        rs = "Skills from resume : {}".format(set(get_skills_from_resume2)))
     
 
 
