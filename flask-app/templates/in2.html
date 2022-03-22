@@ -6,7 +6,7 @@
   <body>
     <nav class="navbar">
       <div class="container">
-        <h1 class="h-primary">JOBS SEARCH AND POST PORTAL</h1>
+        <h1 class="h-primary">Job Search and Posting Portal</h1>
       </div>
     </nav>
 
@@ -14,10 +14,12 @@
     <section class="fileUpload">
       <form action="/predict" method="post" enctype="multipart/form-data">
         <div class="container">
-          <input class="upload-box" type="file" name="file" multiple/>
+          <label for="Upload Job Advertisement">Upload Job Advertisement:</label>
+          <input class="upload-box" type="file" name="file" placeholder = "Upload Job Advertisement"multiple/>
         </div>
           <div class="container">
-            <input class="upload-box" type="file" name="file2" />
+            <label for="Upload Resume">Upload Resume:</label>
+            <input class="upload-box" type="file" name="file2" placeholder="Upload Resume" />
           </div>
 
         <div class="upload-button">
