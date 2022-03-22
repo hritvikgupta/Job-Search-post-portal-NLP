@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem;
+  background-color: var(--dark-mode);
+  color: var(--white);
+  font-size: 18px;
+}
+.h-primary {
+  padding: 2rem;
+}
+.container {
+  padding: 0.5rem;
+}
+.upload-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+}
+pre {
+  padding: 0.4rem;
+}

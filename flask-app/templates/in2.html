@@ -2,6 +2,11 @@
   <head>
     <title>upload</title>
     <link rel="stylesheet" href="styling/file.css" />
+    <link
+      rel="stylesheet"
+      href="https://light-ui-library.netlify.app/import.css"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -14,11 +19,11 @@
     <section class="fileUpload">
       <form action="/predict" method="post" enctype="multipart/form-data">
         <div class="container">
-          <input class="upload-box" type="file" name="file" multiple/>
+          <input class="upload-box" type="file" name="file" multiple />
         </div>
-          <div class="container">
-            <input class="upload-box" type="file" name="file2" />
-          </div>
+        <div class="container">
+          <input class="upload-box" type="file" name="file2" />
+        </div>
 
         <div class="upload-button">
           <input class="upload" type="submit" value="Upload" />
