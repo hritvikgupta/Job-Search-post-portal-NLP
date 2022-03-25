@@ -70,16 +70,23 @@ UPLOAD_FOLDER = '/Users/hritvikgupta/Downloads/flask-app/data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
+def login():
+    return render_template('log.html')
+
+@app.route('/', methods=['POST', 'GET'])
+
+def upload():
+    return render_template("index.html")
+@app.route('/predict/')
 def home():
     return render_template("index.html")
 
 def upload():
     return render_template('index.html')
 
-@app.route('/', methods=['POST', 'GET'])
-
-def upload():
-    return render_template("index.html")
+@app.route('/register/')
+def register():
+    return render_template('registration.html')
 
 class resume_spacy_pdf_clean_skills():
     
@@ -450,6 +457,27 @@ def predict():
                                         rs = "Skills from resume : {}".format(",".join(set(get_skills_from_resume2))))
     
 
+@app.route('/login',methods=['GET','POST'])
+def log():
+    if request.method == "POST":
+        user = request.form['user']
+        password = request.form['password']
+        return redirect(url_for('home'))
+    jb =  request.form['name']
+    return render_template("log.html", user_name = jb)
 
+
+@app.route('/register',methods=['GET','POST'])
+def registration():
+    if request.method == "POST":
+        user = request.form['user']
+        password = request.form['password']
+        location = request.form['location']
+        work = request.form['work']
+        employee = request.form['employee']
+        confirmpassword = request.form['confirmpassword']
+        return redirect(url_for('login'))
+    #jb =  request.form['name']
+    return render_template("registration.html")
 if __name__ == '__main__':
     app.run(debug=True)
