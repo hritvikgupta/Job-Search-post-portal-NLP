@@ -391,11 +391,12 @@ def resume():
     match = spacy_2.get_matching_score(set(jobs), set(get_skills_from_resume2))
     return render_template('index.html', match="Matched resume {}".format(match))
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['GET','POST'])
 def predict():
     if request.method == 'POST':  
         file_path = request.files['file']
         filepath2 = request.files['file2']
+       
     #s = str(file_path).index("/Users")
     #e = str(file_path).index(".pdf")
     #path  = str(file_path)[s:e]
@@ -441,12 +442,12 @@ def predict():
     clean_text2 = spacy_.cleaning_texts(text_from_pdf2)
     get_skills_from_resume2, others= spacy_.get_skills(nlp2,clean_text2)
     match = spacy_.get_matching_score(set(skills_required), set(get_skills_from_resume2))
-    return render_template('index.html', prediction_text="Skills Required  : {}".format(set(skills_required)), 
-                                        jobs_text = "Jobs Opening : {}".format(set(jobs)),
-                                        salary_re = "Salary offered : {}".format(set(sal)),
-                                        nop = "Number of Openings : {}".format(number_of_post),
+    return render_template('index.html', prediction_text="Skills Required  : {}".format(",".join(skills_required)), 
+                                        jobs_text = "Jobs Opening : {}".format(",".join(set(jobs))),
+                                        salary_re = "Salary offered : {}".format(",".join(set(sal))),
+                                        nop = "Number of Openings : {}".format(",".join(number_of_post)),
                                         match="Matched resume : {}".format(match),
-                                        rs = "Skills from resume : {}".format(set(get_skills_from_resume2)))
+                                        rs = "Skills from resume : {}".format(",".join(set(get_skills_from_resume2))))
     
 
 
