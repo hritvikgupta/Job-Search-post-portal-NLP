@@ -8,6 +8,7 @@ import keras
 import nltk
 from nltk.corpus import stopwords
 import string
+import time
 from spacy.pipeline import EntityRuler 
 #from wordcloud import WordCloud
 #import seaborn as sns
@@ -54,6 +55,7 @@ from spacy.tokens import Doc
 import numpy as np
 from tika import parser
 
+import json
 import random
 from spacy.util import minibatch, compounding
 from pathlib import Path
@@ -464,11 +466,14 @@ def log():
         password = request.form['password']
         return redirect(url_for('home'))
     jb =  request.form['name']
-    return render_template("log.html", user_name = jb)
+    return render_template("log.html")
 
 
 @app.route('/register',methods=['GET','POST'])
 def registration():
+    
+    #moment=time.strftime("%Y-%b-%d__%H_%M_%S",time.localtime())
+    dict_ = {}
     if request.method == "POST":
         user = request.form['user']
         password = request.form['password']
@@ -476,8 +481,17 @@ def registration():
         work = request.form['work']
         employee = request.form['employee']
         confirmpassword = request.form['confirmpassword']
+        dict_["user"] = user.lower()
+        dict_["password"] = password.lower()
+        dict_['location'] = location.lower()
+        dict_['work'] = work.lower()
+        dict_['employee'] = employee
+        out_file = open(user.lower()+work.lower()+location.lower()+'.json', 'w')
+        json.dump(dict_, out_file, indent = 4, sort_keys = False)
+        out_file.close()
         return redirect(url_for('login'))
     #jb =  request.form['name']
-    return render_template("registration.html")
+    jb =  request.form['name']
+    return render_template("registration.html", user_name = jb)
 if __name__ == '__main__':
     app.run(debug=True)
