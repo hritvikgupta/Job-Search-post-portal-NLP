@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  
+  <title>upload</title>
+  <link rel="stylesheet" href="styling/file.css" />
+  <link rel="stylesheet" href="https://light-ui-library.netlify.app/import.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 2rem;
+      background-color: var(--dark-mode);
+      color: var(--white);
+      font-size: 18px;
+    }
+    .upload-box{
+        display: grid;
+        width: 540px;
+        grid-template-columns: 120px 120px 120px;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 100px 2em;
+            }
+    .h-primary {
+
+      padding: 2rem;
+    }
+    .upload-box{
+      z-index: 111;
+    }
+
+    .container {
+      padding: 0.5rem;
+    }
+
+    .upload-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem;
+    }
+
+    pre {
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="h-primary">Job Search and Posting Portal</h1>
+    </div>
+  </nav>
+
+  <!-- button main -->
+  <section class="login">
+    <form action="/login" method="POST" enctype="multipart/form-data">
+    <label for="login">Register Your Organisation</label>
+      <div class="container">
+        
+        <label for="enter User-name">Registered Name:</label>
+        <input class="upload-box" type="text" name="user"  placeholder="Enter Name" multiple />
+        <label for="enter User-name">Password:</label>
+        <input class="upload-box" type="text" name="password"  placeholder="Password" multiple />
+        <select name = "name" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+            <option value = "organisation">organisation</option>
+            <option value = "job-seeker">Job seeker</option>
+    
+        </select>
+      </div>
+      <div class="upload-button">
+        <input class="upload" type="submit" value="Submit" />
+      </div>
+      <a href="{{ url_for('register') }}" style="color: Color Here"><b>New User/Organisation Registration</b></a>
+    </form>
+  </section>
+  <pre>{{user_name}}</pre>
+</body>
+
+</html>

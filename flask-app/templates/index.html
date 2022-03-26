@@ -1,0 +1,92 @@
+<html>
+
+<head>
+  <title>upload</title>
+  <link rel="stylesheet" href="styling/file.css" />
+  <link rel="stylesheet" href="https://light-ui-library.netlify.app/import.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 2rem;
+      background-color: var(--dark-mode);
+      color: var(--white);
+      font-size: 18px;
+    }
+    
+    .output-box{
+      height: 400px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      width:80vw;
+
+
+    }p{
+      font-size:1.5rem;
+
+
+    }
+    .h-primary {
+
+      padding: 2rem;
+    }
+    .upload-box{
+      z-index: 111;
+    }
+
+    .container {
+      padding: 0.5rem;
+    }
+
+    .upload-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem;
+    }
+
+    pre {
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="h-primary">Job Search and Posting Portal</h1>
+    </div>
+  </nav>
+
+  <!-- button main -->
+  <section class="fileUpload">
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+      <div class="container">
+        <label for="Upload Job Advertisement">Upload Job Advertisement:</label>
+        <input class="upload-box" type="file" name="file" value = "1" placeholder="Upload Job Advertisement" multiple />
+      </div>
+      <div class="container">
+        <label for="Upload Resume">Upload Resume:</label>
+        <input class="upload-box" type="file" name="file2" value = '2' placeholder="Upload Resume" />
+      </div>
+
+      <div class="upload-button">
+        <input class="upload" type="submit" value="Upload" />
+      </div>
+    </form>
+  </section>
+<div class = "output-box" >
+  <p>{{prediction_text}}</p>
+  <p>{{jobs_text}}</p>
+  <p>{{salary_re}}</p>
+  <p>{{nop}}</p>
+  <p>{{match}}</p>
+  <p>{{rs}}</p>
+</div>
+  <p><a href="{{ url_for('login') }}"></a></p>
+</body>
+
+</html>
